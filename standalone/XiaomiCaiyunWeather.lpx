@@ -1,7 +1,7 @@
 #!name = 🌤 小米·彩云 天气
-#!desc = 独立实现（不依赖 iRingo）：整合小米天气与彩云天气，逐字段回落到 Apple 原始数据\n当前版本 1.0.0-beta.6
+#!desc = 独立实现（不依赖 iRingo）：整合小米天气与彩云天气，逐字段回落到 Apple 原始数据\n当前版本 1.0.0
 #!author = nansi00
-#!version = 1.0.0-beta.6
+#!version = 1.0.0
 #!system = iOS,iPadOS,macOS,watchOS
 #!system_version = 18
 
@@ -12,7 +12,6 @@ Debug.Dump = select,"关","关","开",tag=[调试] 导出原始响应,desc=选�
 [Script]
 http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/ requires-body=1, script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.availability, argument=[{LogLevel},{Debug.Dump}]
 http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/ requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.weather, argument=[{LogLevel},{Debug.Dump}]
-cron "* * * * *" script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/heartbeat.js, tag=🌤 心跳自检
 
 [MITM]
 hostname = weatherkit.apple.com
