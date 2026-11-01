@@ -10,8 +10,8 @@ LogLevel = select,"WARN","OFF","ERROR","WARN","INFO","DEBUG","ALL",tag=[调试] 
 Debug.Dump = boolean,false,tag=[调试] 导出原始响应,desc=打开后把 Apple 原始响应用 base64 打进日志（搜 WKDUMP），用于离线验证编解码，平时请关闭
 
 [Script]
-http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/ requires-body=1, script-path=https://cdn.jsdelivr.net/gh/nansi00/weatherkit-xiaomi-bundle@1c1b94b/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.availability, argument=[{LogLevel},{Debug.Dump}]
-http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/ requires-body=1, binary-body-mode=1, script-path=https://cdn.jsdelivr.net/gh/nansi00/weatherkit-xiaomi-bundle@1c1b94b/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.weather, argument=[{LogLevel},{Debug.Dump}]
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/ requires-body=1, script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.availability, argument=[{LogLevel},{Debug.Dump}]
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/ requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.weather, argument=[{LogLevel},{Debug.Dump}]
 
 [MITM]
 hostname = weatherkit.apple.com
