@@ -7,7 +7,7 @@
 #!tag =  iRingo
 #!system = iOS,iPadOS,macOS,watchOS
 #!date = 2026-11-01 19:45:13
-#!version = 3.3.2-xiaomi.5
+#!version = 3.3.2-xiaomi.6
 #!system_version = 18
 
 [Argument]
