@@ -1,17 +1,18 @@
 #!name = 🌤 小米·彩云 天气
-#!desc = 独立实现（不依赖 iRingo）：整合小米天气与彩云天气，逐字段回落到 Apple 原始数据\n当前版本 1.0.5
+#!desc = 独立实现（不依赖 iRingo）：整合小米天气与彩云天气，逐字段回落到 Apple 原始数据\n当前版本 1.1.0
 #!author = nansi00
-#!version = 1.0.5
+#!version = 1.1.0
 #!system = iOS,iPadOS,macOS,watchOS
 #!system_version = 18
 
 [Argument]
+Source.Priority = select,"auto","auto","caiyun","xiaomi","apple",tag=[数据源] 选择,desc=auto=彩云优先、小米兜底；caiyun=只用彩云（精度最高，含分钟级降水）；xiaomi=只用小米（无分钟级降水）；apple=不替换，用于对比原版效果
 LogLevel = select,"WARN","OFF","ERROR","WARN","INFO","DEBUG","ALL",tag=[调试] 日志等级,desc=排查问题时选 INFO 或 ALL
 Debug.Dump = select,"关","关","开",tag=[调试] 导出原始响应,desc=选「开」后把 Apple 原始响应用 base64 打进日志（搜 WKDUMP），用于离线验证编解码，平时请保持「关」
 
 [Script]
-http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/ requires-body=1, script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.availability, argument=[{LogLevel},{Debug.Dump}]
-http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/ requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.weather, argument=[{LogLevel},{Debug.Dump}]
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/ requires-body=1, script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.availability, argument=[{Source.Priority},{LogLevel},{Debug.Dump}]
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/ requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/nansi00/weatherkit-xiaomi-bundle/main/standalone/xiaomi-weather.bundle.js, tag=🌤 天气数据源.weather, argument=[{Source.Priority},{LogLevel},{Debug.Dump}]
 
 [MITM]
 hostname = weatherkit.apple.com
