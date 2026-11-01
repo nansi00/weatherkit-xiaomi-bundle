@@ -1,7 +1,7 @@
 #!name = 🌤 小米·彩云 天气
-#!desc = 独立实现（不依赖 iRingo）：整合小米天气与彩云天气，逐字段回落到 Apple 原始数据\n当前版本 1.1.0
+#!desc = 独立实现（不依赖 iRingo）：整合小米天气与彩云天气，逐字段回落到 Apple 原始数据\n当前版本 1.2.0
 #!author = nansi00
-#!version = 1.1.0
+#!version = 1.2.0
 #!system = iOS,iPadOS,macOS,watchOS
 #!system_version = 18
 
